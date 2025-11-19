@@ -1,0 +1,62 @@
+; Про установку reverb с примерами
+https://dev.to/vimuth7/building-a-simple-laravel-app-with-reverb-a-step-by-step-guide-19g5
+https://www.itsolutionstuff.com/post/laravel-12-reverb-real-time-notifications-exampleexample.html
+; Про конфигруацию reverb
+https://gist.github.com/mshoaibdev/c7e424abd1957ed10c79e446b8fdf041
+
+
+
+; Ссылки для тестирования
+http://reverbapp.local/posts
+http://reverbapp.local/post-create
+
+; Запуск сборки
+cd /var/www/websocket/
+npm run build
+
+; Запуск сервера WebSocket
+php artisan reverb:start
+php artisan reverb:start --host=127.0.0.1 --port=8080 --no-interaction
+
+; Редактирование файла
+nano .env
+nano /etc/nginx/sites-available/websocket.conf
+
+; Редактирование файла с супер правами
+sudo nano .env
+
+; Проверка правильность конфигурации Nginx
+cd /etc/nginx/sites-available/
+nginx -t
+
+; Перезапустить Nginx
+sudo systemctl restart nginx
+
+; Получить супер права
+sudo supervisorctl status
+X@xQqD<=5?,$uYr
+
+; Работа с supervisorctl
+sudo nano /etc/supervisor/conf.d/reverb.conf
+command=php /var/www/slotplanner-dev/artisan reverb:start --host="0.0.0.0" --port=8080 --hostname="dev.slotplanner.ru"
+command=php /var/www/slotplanner-dev/artisan reverb:start --host=127.0.0.1 --port=8080 --no-interaction
+
+supervisorctl reload
+supervisorctl status
+
+; Какой порт используется
+netstat -tulpn
+
+; Убить процесс
+kill [signal] PID
+
+
+
+
+
+Все привет!
+Алексей Сергеевич - по websocket-ам, вчера пришлось по взрослому поебаться с ними, по итогу есть две новости, хорошая и плохая
+
+Плохая: Чистый Laravel WebSockets больше не поддерживается (пруф https://github.com/beyondcode/laravel-websockets) поставить его на Laravel 12 (который у нас) - нихуя не получится, очень много ошибок из-за отсутствия совместимости и прочая поебота. Умные люди в интеренете пишут что не надо пытаться обходить эти ошибки и городить костыли, все это рано или поздно выйдет боком. Поэтому я через пару часов забил хуй
+
+Хорошая: На сервере что ты мне дал, развирнул новый проект на Laravel 12 и поднял там Reverb (та хуйня с websockets которая не хочет нормально работать на тестовом сервере) и более менее разобравшись как это работает и настраивается у меня получилось его запустить и мало того добиться чтобы клиент коннектился и получал сообщения

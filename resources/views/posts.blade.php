@@ -22,6 +22,7 @@
 <body>
 <div id="app">
    <h1>POSTS</h1>
+    <pre id="data"></pre>
 </div>
 </body>
 
@@ -29,7 +30,7 @@
     window.Echo.channel('posts')
         .listen('.create', (data) => {
             console.log('Order status updated: ', data);
-            alert(data.message);
+            document.getElementById('data').innerHTML = data.message;
         });
 </script>
 
