@@ -32,7 +32,7 @@ Route::get('/posts', function () {
 });
 
 Route::get('/post-create', function () {
-    $message = $_GET['m'] ?? 'Hello!';
+    $message = $_GET['message'] ?? 'Hello!';
     event(new PostCreate($message));
     return response()->json(['status' => 'Message [' . $message  .'] broadcasted!']);
 });
