@@ -32,6 +32,7 @@ Route::get('/posts', function () {
 });
 
 Route::get('/post-create', function () {
-    event(new PostCreate($_GET['m'] ?? 'Заголовок поста'));
-    return response()->json(['status' => 'Message broadcasted!']);
+    $message = $_GET['m'] ?? 'Hello!';
+    event(new PostCreate($message));
+    return response()->json(['status' => 'Message [' . $message  .'] broadcasted!']);
 });
