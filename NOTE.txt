@@ -1,0 +1,9 @@
+https://dev.to/vimuth7/building-a-simple-laravel-app-with-reverb-a-step-by-step-guide-19g5
+https://www.itsolutionstuff.com/post/laravel-12-reverb-real-time-notifications-exampleexample.html
+
+
+
+php artisan reverb:start
+
+http://reverbapp.local/posts
+http://reverbapp.local/post-create
